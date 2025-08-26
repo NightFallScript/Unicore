@@ -12,7 +12,7 @@ if not isfolder("Unicore/"..tostring(game.GameId)) then
     makefolder("Unicore/"..tostring(game.GameId))
 end
 --vars
-local library,menu,tabholder = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnicoreRoblox/Unicore/refs/heads/main/Unicore%20Ui%20for%20ct%20blox"))()
+local library,menu,tabholder = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnicoreRoblox/Unicore/refs/heads/main/Unicore%20Ui%20for%20ct%20blox.lua"))()
 local userInputService = game:GetService("UserInputService")
 local replicatedStorage = game:GetService("ReplicatedStorage")
 local runService = game:GetService("RunService")
