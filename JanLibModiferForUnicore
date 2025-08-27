@@ -1799,7 +1799,7 @@ function library:AddTab(title, pos)
 				option.subcount = 0
 				option.canInit = (option.canInit ~= nil and option.canInit) or true
 				option.tip = option.tip and tostring(option.tip)
-				option.style = option.style == 2
+				option.style = option.style
 				library.flags[option.flag] = option.state
 				table.insert(self.options, option)
 				library.options[option.flag] = option
