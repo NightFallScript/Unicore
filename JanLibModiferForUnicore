@@ -1799,6 +1799,15 @@ function library:AddTab(title, pos)
 				option.subcount = 0
 				option.canInit = (option.canInit ~= nil and option.canInit) or true
 				option.tip = option.tip and tostring(option.tip)
+				if option.color then
+					option._textColor = option.color
+				elseif option.style == "warning" then
+					option._textColor = Color3.fromRGB(255, 255, 0) -- жовтий
+				elseif option.style == "danger" then
+					option._textColor = Color3.fromRGB(255, 0, 0) -- червоний
+				else
+					option._textColor = Color3.fromRGB(255, 255, 255) -- білий дефолт
+				end
 				option.style = option.style
 				library.flags[option.flag] = option.state
 				table.insert(self.options, option)
