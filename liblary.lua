@@ -1,4 +1,4 @@
-- I don't recommend using any of this code since its not near optimal.
+-- I don't recommend using any of this code since its not near optimal.
 
 local userInputService = game:GetService("UserInputService")
 local replicatedStorage = game:GetService("ReplicatedStorage")
@@ -20,7 +20,7 @@ function draggable(a)local b=userInputService;local c;local d;local e;local f;lo
 draggable(menu.outline)
 
 local cursor = Drawing.new("Image")
-cursor.Data = game:HttpGet("https://raw.githubusercontent.com/sj0rs1/Unicore/refs/heads/main/cursor.png")
+cursor.Data = game:HttpGet("https://raw.githubusercontent.com/sj0rs1/alora/refs/heads/main/cursor.png")
 cursor.Size = Vector2.new(32,32)
 cursor.Visible = true
 
@@ -42,7 +42,7 @@ userInputService.InputEnded:Connect(function(key)
     end
 end)
 
-menu.outline.outline.main.text.Text = "Unicore"
+menu.outline.outline.main.text.Text = "alora"
 
 function library:notify(text)
     if playing then return end
@@ -544,7 +544,7 @@ function library:addTab(name)
                     valueButton.Font = "SourceSans"
                     valueButton.Text = v
                     valueButton.Name = v
-
+    
                     valueButton.MouseButton1Click:Connect(function()
                         updateValue(v)
                     end)
@@ -721,18 +721,18 @@ function library:saveConfig()
             jig[i] = v
         end
     end
-    writefile("Unicore/"..tostring(game.GameId).."/"..name..".cfg",game:GetService("HttpService"):JSONEncode(jig))
+    writefile("alora/"..tostring(game.GameId).."/"..name..".cfg",game:GetService("HttpService"):JSONEncode(jig))
     library:notify("Succesfully saved config "..name..".cfg!")
     library:refreshConfigs()
 end
 
 function library:loadConfig()
     local name = library.flags["selected_config"]
-    if not isfile("Unicore/"..tostring(game.GameId).."/"..name..".cfg") then
+    if not isfile("alora/"..tostring(game.GameId).."/"..name..".cfg") then
         library:notify("Config file not found!")
         return
     end
-    local config = game:GetService("HttpService"):JSONDecode(readfile("Unicore/"..tostring(game.GameId).."/"..name..".cfg"))
+    local config = game:GetService("HttpService"):JSONDecode(readfile("alora/"..tostring(game.GameId).."/"..name..".cfg"))
     for i,v in next, library.options do
         spawn(function()pcall(function()
             if config[i] then
@@ -767,15 +767,15 @@ end
 
 function library:refreshConfigs()
     local tbl = {}
-    for i,v in next, listfiles("Unicore/"..tostring(game.GameId)) do
+    for i,v in next, listfiles("alora/"..tostring(game.GameId)) do
         table.insert(tbl,v:split("\\")[2]:split(".")[1])
     end
     library.options["selected_config"].refresh(tbl)
 end
 
 function library:deleteConfig()
-    if isfile("Unicore/"..tostring(game.GameId).."/"..library.flags["selected_config"]..".cfg") then
-        delfile("Unicore/"..tostring(game.GameId).."/"..library.flags["selected_config"]..".cfg")
+    if isfile("alora/"..tostring(game.GameId).."/"..library.flags["selected_config"]..".cfg") then
+        delfile("alora/"..tostring(game.GameId).."/"..library.flags["selected_config"]..".cfg")
         library:refreshConfigs()
     end
 end
@@ -784,5 +784,3 @@ local mouse = game:GetService("Players").LocalPlayer:GetMouse()
 runService.RenderStepped:Connect(function()
     cursor.Position = Vector2.new(mouse.X-16,mouse.Y+40)	
 end)
-
-return library,menu,tabholder
