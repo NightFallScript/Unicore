@@ -164,45 +164,47 @@ function library:GetConfigs()
 end
 
 library.createLabel = function(option, parent)
-    option.main = library:Create("TextLabel", {
-        LayoutOrder = option.position,
-        Position = UDim2.new(0, 6, 0, 0),
-        Size = UDim2.new(1, -12, 0, 24),
-        BackgroundTransparency = 1,
-        TextSize = 15,
-        Font = Enum.Font.Code,
-        -- Колір: color, або yellow, або білий
-        TextColor3 = option.color or (option.yellow and Color3.fromRGB(255, 255, 0) or Color3.new(1, 1, 1)),
-        TextTransparency = 0, -- Примусове встановлення прозорості
-        TextXAlignment = Enum.TextXAlignment.Left,
-        TextYAlignment = Enum.TextYAlignment.Top,
-        TextWrapped = true,
-        Parent = parent
-    })
+	option.main = library:Create("TextLabel", {
+		LayoutOrder = option.position,
+		Position = UDim2.new(0, 6, 0, 0),
+		Size = UDim2.new(1, -12, 0, 24),
+		BackgroundTransparency = 1,
+		TextSize = 15,
+		Font = Enum.Font.Code,
+		TextColor3 = option.yellow and Color3.fromRGB(255, 255, 0) or Color3.new(1, 1, 1),
+		TextXAlignment = Enum.TextXAlignment.Left,
+		TextYAlignment = Enum.TextYAlignment.Top,
+		TextWrapped = true,
+		Parent = parent
+	})
 
-    setmetatable(option, {
-        __newindex = function(t, i, v)
-            if i == "Text" then
-                option.main.Text = tostring(v)
-                option.main.Size = UDim2.new(
-                    1, -12, 0,
-                    textService:GetTextSize(option.main.Text, 15, Enum.Font.Code, Vector2.new(option.main.AbsoluteSize.X, 9e9)).Y + 6
-                )
-            elseif i == "Color" then
-                option.main.TextColor3 = v
-                option.main.TextTransparency = 0 -- знову примусово непрозорий
-            end
-        end
-    })
+	-- ⚡️Форсимо колір, якщо yellow
+	if option.yellow then
+		option.main:GetPropertyChangedSignal("TextColor3"):Connect(function()
+			option.main.TextColor3 = Color3.fromRGB(255, 255, 0)
+		end)
+	end
 
-    option.Text = option.text
-    if option.color then
-        option.Color = option.color
-    elseif option.yellow then
-        option.Color = Color3.fromRGB(255, 255, 0)
-    else
-        option.Color = Color3.new(1, 1, 1)
-    end
+	setmetatable(option, {
+		__newindex = function(t, i, v)
+			if i == "Text" then
+				option.main.Text = tostring(v)
+				option.main.Size = UDim2.new(
+					1, -12, 0,
+					textService:GetTextSize(option.main.Text, 15, Enum.Font.Code, Vector2.new(option.main.AbsoluteSize.X, 9e9)).Y + 6
+				)
+			elseif i == "Color" then
+				option.main.TextColor3 = v
+			end
+		end
+	})
+
+	option.Text = option.text
+	if option.color then
+		option.Color = option.color
+	elseif option.yellow then
+		option.Color = Color3.fromRGB(255, 255, 0)
+	end
 end
 
 library.createDivider = function(option, parent)
