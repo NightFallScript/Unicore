@@ -171,8 +171,13 @@ library.createLabel = function(option, parent)
 		BackgroundTransparency = 1,
 		TextSize = 15,
 		Font = Enum.Font.Code,
-		-- Якщо задано option.color → використовуємо його, інакше якщо yellow → жовтий, інакше білий
+
+		-- 🔹 Логіка кольору:
+		-- Якщо задано option.color → беремо його
+		-- Інакше якщо option.yellow → ставимо жовтий
+		-- Інакше → стандартно білий
 		TextColor3 = option.color or (option.yellow and Color3.fromRGB(255, 255, 0) or Color3.new(1, 1, 1)),
+
 		TextXAlignment = Enum.TextXAlignment.Left,
 		TextYAlignment = Enum.TextYAlignment.Top,
 		TextWrapped = true,
@@ -193,11 +198,14 @@ library.createLabel = function(option, parent)
 		end
 	})
 
+	-- 🔹 Ініціалізація кольору
 	option.Text = option.text
 	if option.color then
 		option.Color = option.color
 	elseif option.yellow then
 		option.Color = Color3.fromRGB(255, 255, 0)
+	else
+		option.Color = Color3.new(1, 1, 1) -- стандартно білий
 	end
 end
 
