@@ -171,40 +171,20 @@ library.createLabel = function(option, parent)
 		BackgroundTransparency = 1,
 		TextSize = 15,
 		Font = Enum.Font.Code,
-		TextColor3 = option.yellow and Color3.fromRGB(255, 255, 0) or Color3.new(1, 1, 1),
+		TextColor3 = Color3.new(1, 1, 1),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		TextYAlignment = Enum.TextYAlignment.Top,
 		TextWrapped = true,
 		Parent = parent
 	})
 
-	-- ⚡️Форсимо колір, якщо yellow
-	if option.yellow then
-		option.main:GetPropertyChangedSignal("TextColor3"):Connect(function()
-			option.main.TextColor3 = Color3.fromRGB(255, 255, 0)
-		end)
-	end
-
-	setmetatable(option, {
-		__newindex = function(t, i, v)
-			if i == "Text" then
-				option.main.Text = tostring(v)
-				option.main.Size = UDim2.new(
-					1, -12, 0,
-					textService:GetTextSize(option.main.Text, 15, Enum.Font.Code, Vector2.new(option.main.AbsoluteSize.X, 9e9)).Y + 6
-				)
-			elseif i == "Color" then
-				option.main.TextColor3 = v
-			end
+	setmetatable(option, {__newindex = function(t, i, v)
+		if i == "Text" then
+			option.main.Text = tostring(v)
+			option.main.Size = UDim2.new(1, -12, 0, textService:GetTextSize(option.main.Text, 15, Enum.Font.Code, Vector2.new(option.main.AbsoluteSize.X, 9e9)).Y + 6)
 		end
-	})
-
+	end})
 	option.Text = option.text
-	if option.color then
-		option.Color = option.color
-	elseif option.yellow then
-		option.Color = Color3.fromRGB(255, 255, 0)
-	end
 end
 
 library.createDivider = function(option, parent)
@@ -258,7 +238,7 @@ library.createToggle = function(option, parent)
 	option.main = library:Create("Frame", {
 		LayoutOrder = option.position,
 		Size = UDim2.new(1, 0, 0, 20),
-		BackgroundTransparency = 0,
+		BackgroundTransparency = 1,
 		Parent = parent
 	})
 
@@ -269,7 +249,7 @@ library.createToggle = function(option, parent)
 			Position = UDim2.new(0, 6, 0, 4),
 			Size = UDim2.new(0, 12, 0, 12),
 			BackgroundTransparency = 1,
-			Image = "rbxassetid://",
+			Image = "rbxassetid://3570695787",
 			ImageColor3 = Color3.new(),
 			Parent = option.main
 		})
@@ -279,7 +259,7 @@ library.createToggle = function(option, parent)
 			Position = UDim2.new(0.5, 0, 0.5, 0),
 			Size = UDim2.new(1, -2, 1, -2),
 			BackgroundTransparency = 1,
-			Image = "rbxassetid://",
+			Image = "rbxassetid://3570695787",
 			ImageColor3 = Color3.fromRGB(60, 60, 60),
 			Parent = tickbox
 		})
@@ -289,7 +269,7 @@ library.createToggle = function(option, parent)
 			Position = UDim2.new(0.5, 0, 0.5, 0),
 			Size = UDim2.new(1, -6, 1, -6),
 			BackgroundTransparency = 1,
-			Image = "rbxassetid://",
+			Image = "rbxassetid://3570695787",
 			ImageColor3 = Color3.fromRGB(40, 40, 40),
 			Parent = tickbox
 		})
@@ -299,7 +279,7 @@ library.createToggle = function(option, parent)
 			Position = UDim2.new(0.5, 0, 0.5, 0),
 			Size = UDim2.new(1, -6, 1, -6),
 			BackgroundTransparency = 1,
-			Image = "rbxassetid://",
+			Image = "rbxassetid://3570695787",
 			ImageColor3 = library.flags["Menu Accent Color"],
 			Visible = option.state,
 			Parent = tickbox
@@ -310,7 +290,7 @@ library.createToggle = function(option, parent)
 			Position = UDim2.new(0.5, 0, 0.5, 0),
 			Size = UDim2.new(1, 0, 1, 0),
 			BackgroundTransparency = 1,
-			Image = "rbxassetid://5",
+			Image = "rbxassetid://5941353943",
 			ImageTransparency = 0.6,
 			Parent = tickbox
 		})
@@ -1807,26 +1787,22 @@ function library:AddTab(title, pos)
 				return option
 			end
 
-function section:AddToggle(option)
-	option = typeof(option) == "table" and option or {}
-	option.section = self
-	option.text = tostring(option.text)
-	option.state = option.state == nil and nil or (typeof(option.state) == "boolean" and option.state or false)
-	option.callback = typeof(option.callback) == "function" and option.callback or function() end
-	option.type = "toggle"
-	option.position = #self.options
-	option.flag = (library.flagprefix and library.flagprefix .. " " or "") .. (option.flag or option.text)
-	option.subcount = 0
-	option.canInit = (option.canInit ~= nil and option.canInit) or true
-	option.tip = option.tip and tostring(option.tip)
-	option.style = option.style == 2
-	
-	-- 🔹 Додаємо прапорець кольору
-	option.yellow = option.yellow or false
-
-	library.flags[option.flag] = option.state
-	table.insert(self.options, option)
-	library.options[option.flag] = option
+			function section:AddToggle(option)
+				option = typeof(option) == "table" and option or {}
+				option.section = self
+				option.text = tostring(option.text)
+				option.state = option.state == nil and nil or (typeof(option.state) == "boolean" and option.state or false)
+				option.callback = typeof(option.callback) == "function" and option.callback or function() end
+				option.type = "toggle"
+				option.position = #self.options
+				option.flag = (library.flagprefix and library.flagprefix .. " " or "") .. (option.flag or option.text)
+				option.subcount = 0
+				option.canInit = (option.canInit ~= nil and option.canInit) or true
+				option.tip = option.tip and tostring(option.tip)
+				option.style = option.style == 2
+				library.flags[option.flag] = option.state
+				table.insert(self.options, option)
+				library.options[option.flag] = option
 
 				function option:AddColor(subOption)
 					subOption = typeof(subOption) == "table" and subOption or {}
@@ -2365,7 +2341,7 @@ function library:AddWarning(warning)
 					ZIndex = 2,
 					Size = UDim2.new(1, 0, 1, 0),
 					BackgroundTransparency = 1,
-					Image = "rbxassetid://",
+					Image = "rbxassetid://2454009026",
 					ImageColor3 = Color3.new(),
 					ImageTransparency = 0.8,
 					Parent = button
@@ -2375,7 +2351,7 @@ function library:AddWarning(warning)
 					ZIndex = 2,
 					Size = UDim2.new(1, 0, 1, 0),
 					BackgroundTransparency = 1,
-					Image = "rbxassetid://",
+					Image = "rbxassetid://2592362371",
 					ImageColor3 = Color3.fromRGB(60, 60, 60),
 					ScaleType = Enum.ScaleType.Slice,
 					SliceCenter = Rect.new(2, 2, 62, 62),
@@ -2399,7 +2375,7 @@ function library:AddWarning(warning)
 					ZIndex = 2,
 					Size = UDim2.new(1, 0, 1, 0),
 					BackgroundTransparency = 1,
-					Image = "rbxassetid://",
+					Image = "rbxassetid://2454009026",
 					ImageColor3 = Color3.new(),
 					ImageTransparency = 0.8,
 					Parent = button1
@@ -2409,7 +2385,7 @@ function library:AddWarning(warning)
 					ZIndex = 2,
 					Size = UDim2.new(1, 0, 1, 0),
 					BackgroundTransparency = 1,
-					Image = "rbxassetid://",
+					Image = "rbxassetid://2592362371",
 					ImageColor3 = Color3.fromRGB(60, 60, 60),
 					ScaleType = Enum.ScaleType.Slice,
 					SliceCenter = Rect.new(2, 2, 62, 62),
@@ -2445,7 +2421,7 @@ function library:AddWarning(warning)
 					ZIndex = 2,
 					Size = UDim2.new(1, 0, 1, 0),
 					BackgroundTransparency = 1,
-					Image = "rbxassetid://",
+					Image = "rbxassetid://2454009026",
 					ImageColor3 = Color3.new(),
 					ImageTransparency = 0.8,
 					Parent = button
@@ -2457,7 +2433,7 @@ function library:AddWarning(warning)
 					Position = UDim2.new(0.5, 0, 0.5, 0),
 					Size = UDim2.new(1, -2, 1, -2),
 					BackgroundTransparency = 1,
-					Image = "rbxassetid://",
+					Image = "rbxassetid://3570695787",
 					ImageColor3 = Color3.fromRGB(50, 50, 50),
 					Parent = button
 				})
