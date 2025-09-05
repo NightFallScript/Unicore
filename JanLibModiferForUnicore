@@ -1805,22 +1805,26 @@ function library:AddTab(title, pos)
 				return option
 			end
 
-			function section:AddToggle(option)
-				option = typeof(option) == "table" and option or {}
-				option.section = self
-				option.text = tostring(option.text)
-				option.state = option.state == nil and nil or (typeof(option.state) == "boolean" and option.state or false)
-				option.callback = typeof(option.callback) == "function" and option.callback or function() end
-				option.type = "toggle"
-				option.position = #self.options
-				option.flag = (library.flagprefix and library.flagprefix .. " " or "") .. (option.flag or option.text)
-				option.subcount = 0
-				option.canInit = (option.canInit ~= nil and option.canInit) or true
-				option.tip = option.tip and tostring(option.tip)
-				option.style = option.style == 2
-				library.flags[option.flag] = option.state
-				table.insert(self.options, option)
-				library.options[option.flag] = option
+function section:AddToggle(option)
+	option = typeof(option) == "table" and option or {}
+	option.section = self
+	option.text = tostring(option.text)
+	option.state = option.state == nil and nil or (typeof(option.state) == "boolean" and option.state or false)
+	option.callback = typeof(option.callback) == "function" and option.callback or function() end
+	option.type = "toggle"
+	option.position = #self.options
+	option.flag = (library.flagprefix and library.flagprefix .. " " or "") .. (option.flag or option.text)
+	option.subcount = 0
+	option.canInit = (option.canInit ~= nil and option.canInit) or true
+	option.tip = option.tip and tostring(option.tip)
+	option.style = option.style == 2
+	
+	-- 🔹 Додаємо прапорець кольору
+	option.yellow = option.yellow or false
+
+	library.flags[option.flag] = option.state
+	table.insert(self.options, option)
+	library.options[option.flag] = option
 
 				function option:AddColor(subOption)
 					subOption = typeof(subOption) == "table" and subOption or {}
