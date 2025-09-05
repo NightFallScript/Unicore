@@ -297,13 +297,14 @@ library.createToggle = function(option, parent)
 
 		table.insert(library.theme, tickboxOverlay)
 	else
-		tickbox = library:Create("Frame", {
-			Position = UDim2.new(0, 6, 0, 4),
-			Size = UDim2.new(0, 12, 0, 12),
-			BackgroundColor3 = library.flags["Menu Accent Color"],
-			BorderColor3 = Color3.new(),
-			Parent = option.main
-		})
+tickbox = library:Create("Frame", {
+    Position = UDim2.new(0, 6, 0, 4),
+    Size = UDim2.new(0, 12, 0, 12),
+    BackgroundColor3 = library.flags["Menu Accent Color"],
+    BorderColor3 = Color3.new(),
+    BorderSizePixel = 0,
+    Parent = option.main
+})
 
 		tickboxOverlay = library:Create("ImageLabel", {
 			Size = UDim2.new(1, 0, 1, 0),
