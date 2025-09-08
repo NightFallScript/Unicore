@@ -263,7 +263,7 @@ library.createToggle = function(option, parent)
 			ImageColor3 = Color3.fromRGB(60, 60, 60),
 			Parent = tickbox
 		})
-
+		
 		library:Create("ImageLabel", {
 			AnchorPoint = Vector2.new(0.5, 0.5),
 			Position = UDim2.new(0.5, 0, 0.5, 0),
@@ -931,7 +931,7 @@ library.createList = function(option, parent)
 		ZIndex = 4,
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
-		Image = "rbxassetid://2592362371",
+		Image = "rbxassetid://",
 		ImageColor3 = Color3.fromRGB(60, 60, 60),
 		ScaleType = Enum.ScaleType.Slice,
 		SliceCenter = Rect.new(2, 2, 62, 62),
@@ -943,7 +943,7 @@ library.createList = function(option, parent)
 		Size = UDim2.new(1, -2, 1, -2),
 		Position = UDim2.new(0, 1, 0, 1),
 		BackgroundTransparency = 1,
-		Image = "rbxassetid://2592362371",
+		Image = "rbxassetid://",
 		ImageColor3 = Color3.new(),
 		ScaleType = Enum.ScaleType.Slice,
 		SliceCenter = Rect.new(2, 2, 62, 62),
