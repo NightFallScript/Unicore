@@ -249,7 +249,7 @@ library.createToggle = function(option, parent)
 			Position = UDim2.new(0, 6, 0, 4),
 			Size = UDim2.new(0, 12, 0, 12),
 			BackgroundTransparency = 1,
-			Image = "rbxassetid://3570695787",
+			Image = "rbxassetid://",
 			ImageColor3 = Color3.new(),
 			Parent = option.main
 		})
@@ -2530,7 +2530,7 @@ function library:Init()
 	library:Create("ImageLabel", {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
-		Image = "rbxassetid://2454009026",
+		Image = "rbxassetid://",
 		ImageColor3 = Color3.new(),
 		ImageTransparency = 0.4,
 		Parent = top
