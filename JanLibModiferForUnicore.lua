@@ -249,7 +249,7 @@ library.createToggle = function(option, parent)
 			Position = UDim2.new(0, 6, 0, 4),
 			Size = UDim2.new(0, 12, 0, 12),
 			BackgroundTransparency = 1,
-			Image = "rbxassetid://3570695787",
+			Image = "rbxassetid://",
 			ImageColor3 = Color3.new(),
 			Parent = option.main
 		})
@@ -269,7 +269,7 @@ library.createToggle = function(option, parent)
 			Position = UDim2.new(0.5, 0, 0.5, 0),
 			Size = UDim2.new(1, -6, 1, -6),
 			BackgroundTransparency = 1,
-			Image = "rbxassetid://3570695787",
+			Image = "rbxassetid://",
 			ImageColor3 = Color3.fromRGB(40, 40, 40),
 			Parent = tickbox
 		})
