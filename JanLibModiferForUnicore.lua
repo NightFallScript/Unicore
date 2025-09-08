@@ -1624,7 +1624,7 @@ library.createColor = function(option, parent)
 	library:Create("ImageLabel", {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
-		Image = "rbxassetid://2454009026",
+		Image = "rbxassetid://",
 		ImageColor3 = Color3.new(),
 		ImageTransparency = 0.6,
 		Parent = option.visualize
