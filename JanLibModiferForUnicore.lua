@@ -1800,65 +1800,76 @@ function library:AddTab(title, pos)
 				return option
 			end
 
-			function section:AddToggle(option)
-				option = typeof(option) == "table" and option or {}
-				option.section = self
-				option.text = tostring(option.text)
-				option.state = option.state == nil and nil or (typeof(option.state) == "boolean" and option.state or false)
-				option.callback = typeof(option.callback) == "function" and option.callback or function() end
-				option.type = "toggle"
-				option.position = #self.options
-				option.flag = (library.flagprefix and library.flagprefix .. " " or "") .. (option.flag or option.text)
-				option.subcount = 0
-				option.canInit = (option.canInit ~= nil and option.canInit) or true
-				option.tip = option.tip and tostring(option.tip)
-				option.style = option.style == 2
-				library.flags[option.flag] = option.state
-				table.insert(self.options, option)
-				library.options[option.flag] = option
+function section:AddToggle(option)
+    option = typeof(option) == "table" and option or {}
+    option.section = self
+    option.text = tostring(option.text)
+    option.state = option.state == nil and nil or (typeof(option.state) == "boolean" and option.state or false)
+    option.callback = typeof(option.callback) == "function" and option.callback or function() end
+    option.type = "toggle"
+    option.position = #self.options
+    option.flag = (library.flagprefix and library.flagprefix .. " " or "") .. (option.flag or option.text)
+    option.subcount = 0
+    option.canInit = (option.canInit ~= nil and option.canInit) or true
+    option.tip = option.tip and tostring(option.tip)
+    option.style = option.style == 2
+    option.stats = option.stats or nil -- ✅ додали stats (yellow)
+    library.flags[option.flag] = option.state
+    table.insert(self.options, option)
+    library.options[option.flag] = option
 
-				function option:AddColor(subOption)
-					subOption = typeof(subOption) == "table" and subOption or {}
-					subOption.sub = true
-					subOption.subpos = self.subcount * 24
-					function subOption:getMain() return option.main end
-					self.subcount = self.subcount + 1
-					return section:AddColor(subOption)
-				end
+    function option:AddColor(subOption)
+        subOption = typeof(subOption) == "table" and subOption or {}
+        subOption.sub = true
+        subOption.subpos = self.subcount * 24
+        function subOption:getMain() return option.main end
+        self.subcount = self.subcount + 1
+        return section:AddColor(subOption)
+    end
 
-				function option:AddBind(subOption)
-					subOption = typeof(subOption) == "table" and subOption or {}
-					subOption.sub = true
-					subOption.subpos = self.subcount * 24
-					function subOption:getMain() return option.main end
-					self.subcount = self.subcount + 1
-					return section:AddBind(subOption)
-				end
+    function option:AddBind(subOption)
+        subOption = typeof(subOption) == "table" and subOption or {}
+        subOption.sub = true
+        subOption.subpos = self.subcount * 24
+        function subOption:getMain() return option.main end
+        self.subcount = self.subcount + 1
+        return section:AddBind(subOption)
+    end
 
-				function option:AddList(subOption)
-					subOption = typeof(subOption) == "table" and subOption or {}
-					subOption.sub = true
-					function subOption:getMain() return option.main end
-					self.subcount = self.subcount + 1
-					return section:AddList(subOption)
-				end
+    function option:AddList(subOption)
+        subOption = typeof(subOption) == "table" and subOption or {}
+        subOption.sub = true
+        function subOption:getMain() return option.main end
+        self.subcount = self.subcount + 1
+        return section:AddList(subOption)
+    end
 
-				function option:AddSlider(subOption)
-					subOption = typeof(subOption) == "table" and subOption or {}
-					subOption.sub = true
-					function subOption:getMain() return option.main end
-					self.subcount = self.subcount + 1
-					return section:AddSlider(subOption)
-				end
+    function option:AddSlider(subOption)
+        subOption = typeof(subOption) == "table" and subOption or {}
+        subOption.sub = true
+        function subOption:getMain() return option.main end
+        self.subcount = self.subcount + 1
+        return section:AddSlider(subOption)
+    end
 
-				if library.hasInit and self.hasInit then
-					library.createToggle(option, self.content)
-				else
-					option.Init = library.createToggle
-				end
+    if library.hasInit and self.hasInit then
+        library.createToggle(option, self.content)
 
-				return option
-			end
+        -- ✅ після створення: якщо stats == "yellow", фарбуємо option.title
+        if option.stats == "yellow" and option.title then
+            option.title.TextColor3 = Color3.fromRGB(255, 255, 0)
+        end
+    else
+        option.Init = function()
+            library.createToggle(option, self.content)
+            if option.stats == "yellow" and option.title then
+                option.title.TextColor3 = Color3.fromRGB(255, 255, 0)
+            end
+        end
+    end
+
+    return option
+end
 
 			function section:AddButton(option)
 				option = typeof(option) == "table" and option or {}
