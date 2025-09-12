@@ -171,7 +171,7 @@ library.createLabel = function(option, parent)
 		BackgroundTransparency = 1,
 		TextSize = 15,
 		Font = Enum.Font.Code,
-		TextColor3 = Color3.new(1, 1, 1),
+		TextColor3 = Color3.new(1, 1, 1), -- білий по замовчуванню
 		TextXAlignment = Enum.TextXAlignment.Left,
 		TextYAlignment = Enum.TextYAlignment.Top,
 		TextWrapped = true,
@@ -182,6 +182,12 @@ library.createLabel = function(option, parent)
 		if i == "Text" then
 			option.main.Text = tostring(v)
 			option.main.Size = UDim2.new(1, -12, 0, textService:GetTextSize(option.main.Text, 15, Enum.Font.Code, Vector2.new(option.main.AbsoluteSize.X, 9e9)).Y + 6)
+
+			if option.stats and option.stats:lower() == "yellow" then
+				option.main.TextColor3 = Color3.fromRGB(255, 255, 0)
+			else
+				option.main.TextColor3 = Color3.new(1, 1, 1)
+			end
 		end
 	end})
 	option.Text = option.text
@@ -209,7 +215,7 @@ library.createDivider = function(option, parent)
 		Position = UDim2.new(0.5, 0, 0.5, 0),
 		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
 		BorderSizePixel = 0,
-		TextColor3 =  Color3.new(1, 1, 1),
+		TextColor3 = Color3.new(1, 1, 1), -- білий
 		TextSize = 15,
 		Font = Enum.Font.Code,
 		TextXAlignment = Enum.TextXAlignment.Center,
@@ -222,6 +228,13 @@ library.createDivider = function(option, parent)
 				option.title.Text = tostring(v)
 				option.title.Size = UDim2.new(0, textService:GetTextSize(option.title.Text, 15, Enum.Font.Code, Vector2.new(9e9, 9e9)).X + 12, 0, 20)
 				option.main.Size = UDim2.new(1, 0, 0, 18)
+
+				-- 🔥 Якщо stats = "yellow", жовтий текст
+				if option.stats and option.stats:lower() == "yellow" then
+					option.title.TextColor3 = Color3.fromRGB(255, 255, 0)
+				else
+					option.title.TextColor3 = Color3.new(1, 1, 1)
+				end
 			else
 				option.title.Text = ""
 				option.title.Size = UDim2.new()
