@@ -1813,7 +1813,7 @@ function section:AddToggle(option)
     option.canInit = (option.canInit ~= nil and option.canInit) or true
     option.tip = option.tip and tostring(option.tip)
     option.style = option.style == 2
-    option.stats = option.stats and tostring(option.stats) or nil -- <-- зберігаємо stats
+    option.stats = option.stats and tostring(option.stats) or nil
     library.flags[option.flag] = option.state
     table.insert(self.options, option)
     library.options[option.flag] = option
@@ -1852,35 +1852,17 @@ function section:AddToggle(option)
         return section:AddSlider(subOption)
     end
 
-    -- helper: знайти TextLabel заголовка (досліджує варіанти)
     local function findTitleLabel(opt)
-        -- 1) очевидний варіант
         if opt.title and typeof(opt.title) == "Instance" and opt.title:IsA("TextLabel") then
             return opt.title
         end
-        -- 2) шукати у opt.main (і його нащадках)
         if opt.main and typeof(opt.main) == "Instance" then
             for _, d in ipairs(opt.main:GetDescendants()) do
                 if d:IsA("TextLabel") and tostring(d.Text) == tostring(opt.text) then
                     return d
                 end
             end
-            for _, d in ipairs(opt.main:GetDescendants()) do
-                if d:IsA("TextLabel") then return d end
-            end
         end
-        -- 3) шукати у opt.interest (якшо є)
-        if opt.interest and typeof(opt.interest) == "Instance" then
-            for _, d in ipairs(opt.interest:GetDescendants()) do
-                if d:IsA("TextLabel") and tostring(d.Text) == tostring(opt.text) then
-                    return d
-                end
-            end
-            for _, d in ipairs(opt.interest:GetDescendants()) do
-                if d:IsA("TextLabel") then return d end
-            end
-        end
-        -- 4) fallback: шукати по тексту в усьому батьківському контейнері секції
         if self.content and typeof(self.content) == "Instance" then
             for _, d in ipairs(self.content:GetDescendants()) do
                 if d:IsA("TextLabel") and tostring(d.Text) == tostring(opt.text) then
@@ -1891,36 +1873,34 @@ function section:AddToggle(option)
         return nil
     end
 
-    -- Функція, яка підфарбовує (викликаємо відкладено після створення UI)
     local function applyStatsColor()
-        local ok, res = pcall(function()
-            local titleLabel = findTitleLabel(option)
-            if titleLabel then
-                if option.stats and option.stats:lower() == "yellow" then
-                    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
-                else
-                    titleLabel.TextColor3 = Color3.new(1, 1, 1)
-                end
-                option.title = titleLabel -- зберігаємо для подальшого доступу
+        local titleLabel = findTitleLabel(option)
+        if titleLabel then
+            if option.stats and option.stats:lower() == "yellow" then
+                titleLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
             else
-                -- debug (можеш закоментити)
-                warn("[AddToggle] failed to find title label for flag:", option.flag, "text:", option.text)
+                titleLabel.TextColor3 = Color3.new(1, 1, 1)
             end
-        end)
-        if not ok then
-            warn("[AddToggle] applyStatsColor error:", res)
+            option.title = titleLabel
         end
     end
 
     if library.hasInit and self.hasInit then
         library.createToggle(option, self.content)
-        -- Відкладаємо трохи — гарантуємо що UI створиться
         task.defer(applyStatsColor)
     else
         option.Init = function()
             library.createToggle(option, self.content)
             task.defer(applyStatsColor)
         end
+    end
+
+    -- перехоплюємо колбек і підфарбовуємо після кожної зміни
+    local originalCallback = option.callback
+    option.callback = function(...)
+        local result = originalCallback(...)
+        applyStatsColor()
+        return result
     end
 
     return option
