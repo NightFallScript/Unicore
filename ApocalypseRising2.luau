@@ -19,6 +19,18 @@ myLib:AddCard(
 )
 
 myLib:AddCard(
+    "SCP:Roleplay",
+    "rbxassetid://115058233019940",
+    {
+        Subtitle = "Expires in -- days", 
+        Build = "v1.0 Releas",
+        Updated = "07.06.2026",
+        Status = "Ready To Launch"
+    }, 
+    "https://api.jnkie.com/api/v1/luascripts/public/b1387d843155fd80d269f4094b9c0309c9d22137380667017ca2a76f1d3254e7/download" 
+)
+
+myLib:AddCard(
     "Project Delta",
     "rbxassetid://86014429821843",
     {
