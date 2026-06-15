@@ -1,3 +1,35 @@
+local p = game:GetService("Players")
+local lp = p.LocalPlayer
+local env = getfenv()
+local ie = env.identifyexecutor or env.getexecutorname
+local name = "unknown"
+
+if ie then
+    local s, r = pcall(ie)
+    if s and r then
+        name = tostring(r):lower()
+    end
+end
+
+local wl = {
+    "volt", "potassium", "pottasium", "wave", "seliware", 
+    "synapse", "sirhurt", "madium", "velocity", 
+    "macsploit", "opiumware", "yub-x"
+}
+
+local ok = false
+for _, v in ipairs(wl) do
+    if name:find(v) then
+        ok = true
+        break
+    end
+end
+
+if not ok then
+    pcall(function() setclipboard("https://discord.gg/UPRtgK6tEJ") end)
+    lp:Kick("Not Support Executor " .. name .. "Join to discord to get supported executor (he auto copy ti clipboard)")
+end
+
 local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/Key%20System%20and%20Loader%20LIB"))()
 
 local myLib = Lib.new({
