@@ -47,7 +47,7 @@ myLib:AddCard(
         Updated = "01.06.2026",
         Status = "Ready To Launch"
     }, 
-    "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/Apocalypse%20Rising%202" 
+    "https://api.jnkie.com/api/v1/luascripts/public/e401913c267301ae998328165932d05caa476ed5aeeee7fd590f160d8c151da2/download" 
 )
 
 myLib:AddCard(
