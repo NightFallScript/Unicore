@@ -14,7 +14,7 @@ end
 local wl = {
     "volt", "potassium", "pottasium", "wave", "seliware", 
     "synapse", "sirhurt", "madium", "velocity", 
-    "macsploit", "opiumware", "yub-x"
+    "macsploit", "opiumware", "yub-x", "delta", "codex"
 }
 
 local ok = false
@@ -60,16 +60,4 @@ myLib:AddCard(
         Status = "Ready To Launch"
     }, 
     "https://api.jnkie.com/api/v1/luascripts/public/b1387d843155fd80d269f4094b9c0309c9d22137380667017ca2a76f1d3254e7/download" 
-)
-
-myLib:AddCard(
-    "Project Delta",
-    "rbxassetid://86014429821843",
-    {
-        Subtitle = "Expires in -- days", 
-        Build = "v2.0",
-        Updated = "01.06.2026",
-        Status = "Ready To Launch"
-    }, 
-    "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/Project%20Delta" 
 )
