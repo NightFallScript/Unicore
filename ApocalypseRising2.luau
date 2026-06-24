@@ -14,7 +14,7 @@ end
 local wl = {
     "volt", "potassium", "pottasium", "wave", "seliware", 
     "synapse", "sirhurt", "madium", "velocity", 
-    "macsploit", "opiumware", "yub-x", "delta", "codex"
+    "macsploit", "opiumware", "yub-x", "delta", "codex", "real"
 }
 
 local ok = false
