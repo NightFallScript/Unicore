@@ -47,7 +47,7 @@ myLib:AddCard(
         Updated = "01.06.2026",
         Status = "Ready To Launch"
     }, 
-    "https://api.jnkie.com/api/v1/luascripts/public/e401913c267301ae998328165932d05caa476ed5aeeee7fd590f160d8c151da2/download" 
+    "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/Apocalypse%20Rising%202" 
 )
 
 myLib:AddCard(
@@ -59,5 +59,5 @@ myLib:AddCard(
         Updated = "07.06.2026",
         Status = "Ready To Launch"
     }, 
-    "https://api.jnkie.com/api/v1/luascripts/public/b1387d843155fd80d269f4094b9c0309c9d22137380667017ca2a76f1d3254e7/download" 
+    "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/SCP%3ARoleplay" 
 )
