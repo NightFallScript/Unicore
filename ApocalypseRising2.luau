@@ -42,7 +42,7 @@ myLib:AddCard(
     "Apocalypse Rising 2",
     "rbxassetid://109672025661691",
     {
-        Subtitle = "Expires in -- days", 
+        Subtitle = "Script for Apocalypse Rising 2.", 
         Build = "v2.6",
         Updated = "01.06.2026",
         Status = "Ready To Launch"
@@ -54,10 +54,22 @@ myLib:AddCard(
     "SCP:Roleplay",
     "rbxassetid://115058233019940",
     {
-        Subtitle = "Expires in -- days", 
-        Build = "v1.0 Releas",
+        Subtitle = "Script for SCP:Roleplay.", 
+        Build = "v1.0",
         Updated = "07.06.2026",
         Status = "Ready To Launch"
     }, 
     "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/SCP%3ARoleplay" 
+)
+
+myLib:AddCard(
+    "The Walking Dead Online",
+    "rbxassetid://115058233019940",
+    {
+        Subtitle = "Script for The Walking Dead Online.", 
+        Build = "v1.0 Release",
+        Updated = "07.06.2026",
+        Status = "Ready To Launch"
+    }, 
+    "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/The%20Walking%20Dead%20Online" 
 )
