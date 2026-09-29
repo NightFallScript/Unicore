@@ -40,7 +40,7 @@ local myLib = Lib.new({
 
 myLib:AddCard(
     "Apocalypse Rising 2",
-    "rbxassetid://109672025661691",
+    "rbxassetid://303166616",
     {
         Subtitle = "Script for Apocalypse Rising 2.", 
         Build = "v2.6",
@@ -52,7 +52,7 @@ myLib:AddCard(
 
 myLib:AddCard(
     "SCP:Roleplay",
-    "rbxassetid://115058233019940",
+    "rbxassetid://303166616",
     {
         Subtitle = "Script for SCP:Roleplay.", 
         Build = "v1.0",
@@ -63,12 +63,24 @@ myLib:AddCard(
 )
 
 myLib:AddCard(
+    "Operation One",
+    "rbxassetid://303166616",
+    {
+        Subtitle = "Script for Operation One.", 
+        Build = "v1.0 Release",
+        Updated = "29.09.2026",
+        Status = "Ready To Launch"
+    }, 
+    "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/Operation%20One" 
+)
+
+myLib:AddCard(
     "The Walking Dead Online",
-    "rbxassetid://115058233019940",
+    "rbxassetid://303166616",
     {
         Subtitle = "Script for The Walking Dead Online.", 
         Build = "v1.0 Release",
-        Updated = "07.06.2026",
+        Updated = "29.09.2026",
         Status = "Ready To Launch"
     }, 
     "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/The%20Walking%20Dead%20Online" 
