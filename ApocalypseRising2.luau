@@ -39,15 +39,15 @@ local myLib = Lib.new({
 })
 
 myLib:AddCard(
-    "Apocalypse Rising 2",
+    "Apocalypse Rising 2 And Twd Loader",
     "rbxassetid://303166616",
     {
-        Subtitle = "Script for Apocalypse Rising 2.", 
+        Subtitle = "Script for Apocalypse Rising 2 and Twd.", 
         Build = "v2.6",
         Updated = "01.06.2026",
         Status = "Ready To Launch"
     }, 
-    "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/Apocalypse%20Rising%202" 
+    "https://raw.githubusercontent.com/liamster7177/67/refs/heads/main/open%20source%20loader" 
 )
 
 myLib:AddCard(
@@ -74,14 +74,3 @@ myLib:AddCard(
     "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/Operation%20One" 
 )
 
-myLib:AddCard(
-    "The Walking Dead Online",
-    "rbxassetid://303166616",
-    {
-        Subtitle = "Script for The Walking Dead Online.", 
-        Build = "v1.0 Release",
-        Updated = "29.09.2026",
-        Status = "Ready To Launch"
-    }, 
-    "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/The%20Walking%20Dead%20Online" 
-)
