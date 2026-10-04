@@ -74,3 +74,14 @@ myLib:AddCard(
     "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/Operation%20One" 
 )
 
+myLib:AddCard(
+    "Rivals",
+    "rbxassetid://303166616",
+    {
+        Subtitle = "Script for Rivals.", 
+        Build = "v1.0 Release",
+        Updated = "29.09.2026",
+        Status = "Ready To Launch"
+    }, 
+    "https://raw.githubusercontent.com/NightFallScript/Scripts/refs/heads/main/Rivals" 
+)
